@@ -4,33 +4,45 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = 'docker.io/engsabry/nginx-argo'
         DOCKER_IMAGE_TAG = 'latest'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-token' 
     }
-
 
     stages {
         stage('Code Checkout') {
             steps {
-                echo 'Code Checkout'
+                echo 'Checking out code...'
                 checkout scm
             }
         }
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building docker image $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
-                    docker.Build("$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG")
-                    
+                    echo "Building Docker image: $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
+                    docker.build("$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG", '.')
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
                 script {
-                    echo
-                    docker.Push("$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG")
-                    
+                    echo "Pushing Docker image: $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
+                        docker.image("$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG").push()
+                    }
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed.'
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
