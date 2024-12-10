@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'docker.io/engsabry/nginx-argo'
         DOCKER_IMAGE_TAG = 'latest'
         DOCKER_CREDENTIALS_ID = 'dockerhub-token' 
-        GITHUB_CREDENTIALS_ID = 'github-credentials' 
+        GITHUB_CREDENTIALS_ID = 'github-pat' 
     }
 
     stages {
