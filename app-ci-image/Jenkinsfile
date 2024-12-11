@@ -22,14 +22,13 @@ pipeline {
                 ])
             }
         }
-        #added this for debugging
+        // added this for debugging
         stage('Debug Workspace') {
             steps {
                 sh 'pwd'
                 sh 'ls -R'
             }
         }
-        #
         stage('Build Docker Image') {
             steps {
                 script {
