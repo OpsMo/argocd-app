@@ -22,7 +22,7 @@ pipeline {
                 ])
             }
         }
-        // added this for debugging
+        // added this for debug
         stage('Debug Workspace') {
             steps {
                 sh 'pwd'
