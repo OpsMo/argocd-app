@@ -22,12 +22,20 @@ pipeline {
                 ])
             }
         }
+        #added this for debugging
+        stage('Debug Workspace') {
+            steps {
+                sh 'pwd'
+                sh 'ls -R'
+            }
+        }
+        #
         stage('Build Docker Image') {
             steps {
                 script {
                     // echo "Building Docker image: $DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG"
                     // docker.build("$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG")
-                    sh 'docker build -t docker.io/engsabry/nginx-argo:latest .'
+                    sh 'docker build -t docker.io/engsabry/nginx-argo:latest -f app-ci-image/Dockerfile app-ci-image'
 
                 }
             }
