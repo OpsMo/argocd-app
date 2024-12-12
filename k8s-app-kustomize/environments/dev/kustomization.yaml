@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - ../../common
 
-devesStrategicMerge:
+patchesStrategicMerge:
 - deployment-dev.yaml
 - service-dev.yaml
 

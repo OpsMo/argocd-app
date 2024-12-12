@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
 - ../../common
 
-prodesStrategicMerge:
+patchesStrategicMerge:
 - deployment-prod.yaml
 - service-prod.yaml
 
 namespace: prod
+
+
