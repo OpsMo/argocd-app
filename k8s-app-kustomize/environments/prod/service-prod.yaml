@@ -6,4 +6,4 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-    nodePort: 30001 ##30001 for production
+    nodePort: 30060 ##30060 for production
