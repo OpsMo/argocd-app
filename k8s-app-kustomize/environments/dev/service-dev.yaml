@@ -4,6 +4,6 @@ metadata:
   name: nginx-service
 spec:
   ports:
-  - port: 80
-    targetPort: 80
-    nodePort: 30050 #30050 for Dev-env
+    - port: 80
+      targetPort: 80
+      nodePort: 30050
