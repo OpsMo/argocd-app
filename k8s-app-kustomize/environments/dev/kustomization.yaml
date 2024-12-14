@@ -4,8 +4,17 @@ resources:
   - ../../common
 
 patches:
-  - path: ingress-dev.yaml
-  - path: service-dev.yaml
-  - path: deployment-dev.yaml
+  - target:
+      kind: Ingress
+      name: nginx-ingress
+    path: ingress-dev.yaml
+  - target:
+      kind: Service
+      name: nginx-service
+    path: service-dev.yaml
+  - target:
+      kind: Deployment
+      name: nginx
+    path: deployment-dev.yaml
 
 namespace: dev
