@@ -4,8 +4,8 @@ resources:
   - ../../common
 
 patches:
-  - service-prod.yaml
-  - deployment-prod.yaml
-  - ingress-prod.yaml
+  - path: ingress-prod.yaml
+  - path: service-prod.yaml
+  - path: deployment-prod.yaml
 
 namespace: prod

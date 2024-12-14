@@ -4,9 +4,8 @@ resources:
   - ../../common
 
 patches:
-  - service-dev.yaml
-  - deployment-dev.yaml
-  - ingress-dev.yaml
-
+  - path: ingress-dev.yaml
+  - path: service-dev.yaml
+  - path: deployment-dev.yaml
 
 namespace: dev
