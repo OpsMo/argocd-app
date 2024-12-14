@@ -6,5 +6,6 @@ resources:
 patchesStrategicMerge:
   - service-prod.yaml
   - deployment-prod.yaml
+  - ingress-prod.yaml
 
 namespace: prod

@@ -6,5 +6,7 @@ resources:
 patchesStrategicMerge:
   - service-dev.yaml
   - deployment-dev.yaml
+  - ingress-dev.yaml
+
 
 namespace: dev
