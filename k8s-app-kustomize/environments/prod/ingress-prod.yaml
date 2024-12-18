@@ -2,12 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
+  namespace: prod
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  ingressClassName: traefik # Use this field instead of the annotation
   rules:
-    - host: prod.local
+    - host: localhost
       http:
         paths:
-          - path: /
+          - path: /prod
             pathType: Prefix
             backend:
               service:

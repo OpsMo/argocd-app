@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  labels:
+    app: nginx
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx
@@ -14,6 +16,6 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: docker.io/engsabry/nginx-argo
+          image: engsabry/nginx-argo
           ports:
             - containerPort: 80

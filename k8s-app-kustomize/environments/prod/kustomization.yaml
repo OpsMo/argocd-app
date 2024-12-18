@@ -8,10 +8,10 @@ patches:
       kind: Ingress
       name: nginx-ingress
     path: ingress-prod.yaml
-  - target:
-      kind: Service
-      name: nginx-service
-    path: service-prod.yaml
+  # - target:
+  #     kind: Service
+  #     name: nginx-service
+  #   path: service-prod.yaml
   - target:
       kind: Deployment
       name: nginx

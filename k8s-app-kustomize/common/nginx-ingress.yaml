@@ -3,16 +3,18 @@ kind: Ingress
 metadata:
   name: nginx-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/ssl-redirect: "false"
+    # traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    # - host: example.local 
-    http:
-      paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: nginx-service
-              port:
-                number: 80
+    - host: localhost
+      http:
+        paths:
+          - path: /common
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
