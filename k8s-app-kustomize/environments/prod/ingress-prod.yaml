@@ -7,7 +7,7 @@ metadata:
     traefik.ingress.kubernetes.io/rewrite-target: /
     traefik.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  ingressClassName: traefik # Use this field instead of the annotation
+  ingressClassName: traefik # i updated this instead of the annotation
   rules:
     - host: localhost
       http:

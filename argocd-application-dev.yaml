@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app-dev
+  namespace: argocd
+spec:
+  destination:
+    namespace: dev  
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/OpsMo/argocd-app.git 
+    targetRevision: main  #for environments i use kustumize not git branching
+    path: k8s-app-kustomize/environments/dev  # Path to the dev environment
+  syncPolicy:
+    automated:
+      prune: true         ###Careful## this willRemove resources not defined in Git/github
+      selfHeal: true      # Automatically fix - false for manual fix
