@@ -1,8 +1,13 @@
-kind: Ingress
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: nginx-ingress
+  namespace: prod
+  annotations:
+    traefik.ingress.kubernetes.io/rewrite-target: /
+    traefik.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
+  ingressClassName: traefik 
   rules:
     - host: localhost
       http:
@@ -13,4 +18,4 @@ spec:
               service:
                 name: nginx-service
                 port:
-                  number: 80≈
+                  number: 80
