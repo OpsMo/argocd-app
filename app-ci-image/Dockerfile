@@ -1,11 +1,15 @@
 FROM nginx:alpine
 
-#  default value
+# Default value
 ENV ENV=prod
 
-# To create the directory and dynamically generate index.html at runtime
-CMD ["sh", "-c", "mkdir -p /usr/share/nginx/html/$ENV && echo '<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>' > /usr/share/nginx/html/$ENV/index.html && nginx -g 'daemon off;'"]
+RUN echo '#!/bin/sh\n\
+mkdir -p /usr/share/nginx/html/$ENV && \
+echo \"<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>\" > /usr/share/nginx/html/$ENV/index.html && \
+nginx -g \"daemon off;\"' > /entrypoint.sh && chmod +x /entrypoint.sh
 
+# Use the entrypoint script to preprocess and start nginx
+ENTRYPOINT ["/entrypoint.sh"]
 
 # FROM nginx:alpine
 # RUN mkdir -p /usr/share/nginx/html/prod
