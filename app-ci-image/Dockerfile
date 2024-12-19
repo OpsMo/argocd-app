@@ -3,12 +3,12 @@ FROM nginx:alpine
 # Default value
 ENV ENV=prod
 
-RUN echo '#!/bin/sh\n\
-mkdir -p /usr/share/nginx/html/$ENV && \
-echo \"<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>\" > /usr/share/nginx/html/$ENV/index.html && \
-nginx -g \"daemon off;\"' > /entrypoint.sh && chmod +x /entrypoint.sh
+RUN printf '#!/bin/sh\n\
+mkdir -p /usr/share/nginx/html/$ENV && \n\
+echo \"<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>\" > /usr/share/nginx/html/$ENV/index.html && \n\
+nginx -g \"daemon off;\"' > /entrypoint.sh && \
+chmod +x /entrypoint.sh
 
-# Use the entrypoint script to preprocess and start nginx
 ENTRYPOINT ["/entrypoint.sh"]
 
 # FROM nginx:alpine
