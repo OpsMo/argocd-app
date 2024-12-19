@@ -3,11 +3,11 @@ FROM nginx:alpine
 # Default value
 ENV ENV=prod
 
-RUN printf '#!/bin/sh\n\
-mkdir -p /usr/share/nginx/html/$ENV && \n\
-echo \"<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>\" > /usr/share/nginx/html/$ENV/index.html && \n\
-nginx -g \"daemon off;\"' > /entrypoint.sh && \
-chmod +x /entrypoint.sh
+RUN echo '#!/bin/sh' > /entrypoint.sh && \
+    echo 'mkdir -p /usr/share/nginx/html/$ENV' >> /entrypoint.sh && \
+    echo 'echo "<!DOCTYPE html><html><head><title>ArgoCD-Nginx Demo</title></head><body><h1>Welcome to the $ENV environment - ArgoCD-Nginx Demo</h1></body></html>" > /usr/share/nginx/html/$ENV/index.html' >> /entrypoint.sh && \
+    echo 'nginx -g "daemon off;"' >> /entrypoint.sh && \
+    chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
